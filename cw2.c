@@ -42,7 +42,7 @@ int main(int argc, char ** argv)
 
     // create row (guess) pointer
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; i < 1; i++)
     {
         
         int colours[3];
@@ -54,15 +54,15 @@ int main(int argc, char ** argv)
         scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
         // printf("You entered %d, %d, and %d.\n", x[0], x[1], x[2]);
         
-        printf("\nCOLOURS SELECTED: %d %d %d", colours[0], colours[1], colours[2]);
-        
         writeRow(&mastermind->guesses[i], colours);
+
+        printf("\ncurrent guess: %d %d %d", mastermind->guesses[i].colours[0], mastermind->guesses[i].colours[1], mastermind->guesses[i].colours[2]);
         
         // calculate amount of colours in right position
         printf("\nValues in correct position: %d", coloursRightPos(&mastermind->guesses[i]));
 
         // calculate amount of colours in wrong position
-        printf("\nValues in wrong position: %d", coloursWrongPos(&mastermind->guesses[i]));
+        printf("\nValues in wrong position: %d\n", coloursWrongPos(&mastermind->guesses[i]));
 
         // add guess to mastermind guesses array
 
