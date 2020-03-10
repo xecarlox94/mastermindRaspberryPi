@@ -1,5 +1,6 @@
 #include "mastermind.h"
 #include <stddef.h>
+#include <stdio.h>
 
 
 
@@ -28,8 +29,10 @@ int coloursWrongPos(struct Row * guess)
         {
             if ( j == i ) continue;
 
-            if ( guess->colours[j] == scrt->colours[i] )
+            printf("\nguess (%d): %d, secret (%d): %d", j, guess->colours[j], i, scrt->colours[i]);
+            if ( guess->colours[i] == scrt->colours[j] )
             {
+                printf("\ncolour in wrong position");
                 clrsWrongPos++;
                 break;
             }
