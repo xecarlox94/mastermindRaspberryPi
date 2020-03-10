@@ -51,17 +51,19 @@ int main(int argc, char ** argv)
         // ask user for the each colour row values
         // assign coulour to guess pointer
 
-        printf("Guess%d: ", (i + 1));
+        printf("\n\nGuess%d: ", (i + 1));
         scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
         // printf("You entered %d, %d, and %d.\n", x[0], x[1], x[2]);
         
-        printf("COLOURS SELECTED: %d %d %d \n\n", colours[0], colours[1], colours[2]);
+        printf("\nCOLOURS SELECTED: %d %d %d", colours[0], colours[1], colours[2]);
         
-        writeRow(mastermind->guesses[i]->colours, colours);
-
-
+        writeRow(&mastermind->guesses[i], colours);
+        
         // calculate amount of colours in right position
+        printf("\nValues in correct position: %d", coloursRightPos(&mastermind->guesses[i]));
+
         // calculate amount of colours in wrong position
+        printf("\nValues in wrong position: %d", coloursWrongPos(&mastermind->guesses[i]));
 
         // add guess to mastermind guesses array
 

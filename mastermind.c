@@ -33,7 +33,9 @@ int coloursWrongPos(struct Row * guess)
     {
         for (size_t j = 0; j < 3; j++)
         {
-            if ( scrt->colours[j] == guess->colours[i] )
+            if ( j == i ) continue;
+
+            if ( (guess->colours[j] == scrt->colours[i]) )
             {
                 clrsWrongPos++;
                 break;
