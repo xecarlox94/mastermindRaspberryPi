@@ -4,6 +4,17 @@
 #include "mastermind.h"
 
 
+/*
+
+gcc -c -o mastermind.o mastermind.c -std=c99
+
+gcc -c -o cw2.o cw2.c -std=c99
+
+gcc -o cw2 cw2.o mastermind.o -std=c99
+
+*/
+
+
 
 int main(int argc, char ** argv)
 {
