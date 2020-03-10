@@ -33,12 +33,11 @@ int main(int argc, char ** argv)
         temp[i] = rand() % 3;
     }
     
+    struct Row * scrt = mastermind->secret;
 
-    writeRow(mastermind->secret, temp);
+    writeRow(scrt, temp);
 
-    printf("secret 1: %d\n", mastermind->secret->colours[0]);
-    printf("secret 2: %d\n", mastermind->secret->colours[1]);
-    printf("secret 3: %d\n", mastermind->secret->colours[2]);
+    printf("secret: %d %d %d\n", scrt->colours[0], scrt->colours[1], scrt->colours[2]);
 
 
     // create row (guess) pointer
