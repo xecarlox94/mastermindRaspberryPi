@@ -32,33 +32,34 @@ int main(int argc, char ** argv)
 
     // create row (guess) pointer
 
-    // for (size_t i = 0; i < count; i++)
-    // {
-    //     // ask user for the first colour value
-    //     // assign coulour to guess pointer
+    for (size_t i = 0; i < 3; i++)
+    {
+        
+        int colours[3];
 
-    //     // ask user for the second colour value
-    //     // assign coulour to guess pointer
+        // ask user for the each colour row values
+        // assign coulour to guess pointer
 
-    //     // ask user for the third colour value
-    //     // assign coulour to guess pointer
-
-
-    //     // calculate amount of colours in right position
-    //     // calculate amount of colours in wrong position
-
-    //     // add guess to mastermind guesses array
-
-
-    //     // if guess is correct, finish the game
-    //     // guess is correct if colours right position amount is 3
-    //     // and wrong position amount is 0
-    // }
+        printf("Guess%d: ", (i + 1));
+        scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
+        // printf("You entered %d, %d, and %d.\n", x[0], x[1], x[2]);
+        
+        printf("COLOURS SELECTED: %d %d %d \n\n", colours[0], colours[1], colours[2]);
+        
+        writeRow(mastermind->guesses[i]->colours, colours);
 
 
+        // calculate amount of colours in right position
+        // calculate amount of colours in wrong position
+
+        // add guess to mastermind guesses array
 
 
-
+        // if guess is correct, finish the game
+        // guess is correct if colours right position amount is 3
+        // and wrong position amount is 0
+    }
+    
 
 
 

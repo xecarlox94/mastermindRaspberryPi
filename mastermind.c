@@ -1,4 +1,5 @@
 #include "mastermind.h"
+#include <stddef.h>
 
 
 
@@ -28,18 +29,17 @@ int coloursWrongPos(struct Row * guess)
     struct Row * scrt = mastermind->secret;
     int clrsWrongPos = 0;
 
-    if(guess->colours[0] == scrt->colours[0])
+    for (size_t i = 0; i < 3; i++)
     {
-        clrsWrongPos++;
+        for (size_t j = 0; j < 3; j++)
+        {
+            if ( scrt->colours[j] == guess->colours[i] )
+            {
+                clrsWrongPos++;
+                break;
+            }
+        }
     }
-    else if(guess->colours[1] == scrt->colours[1])
-    {
-        clrsWrongPos++;
-    }
-    else if(guess->colours[2] == scrt->colours[2])
-    {
-        clrsWrongPos++;
-    };
     
     return clrsWrongPos;
 };
