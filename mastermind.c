@@ -8,11 +8,11 @@ int coloursRightPos(struct Row * guess)
     struct Row * scrt = mastermind->secret;
     int clrsRightPos = 0;
 
-    if(guess->colours[0] == scrt->colours[0]) clrsRightPos++;
+    if( guess->colours[0] == scrt->colours[0] ) clrsRightPos++;
     
-    if(guess->colours[1] == scrt->colours[1]) clrsRightPos++;
+    if( guess->colours[1] == scrt->colours[1] ) clrsRightPos++;
     
-    if(guess->colours[2] == scrt->colours[2]) clrsRightPos++;
+    if( guess->colours[2] == scrt->colours[2] ) clrsRightPos++;
 
     return clrsRightPos;
 };
@@ -28,7 +28,7 @@ int coloursWrongPos(struct Row * guess)
         {
             if ( j == i ) continue;
 
-            if ( (guess->colours[j] == scrt->colours[i]) )
+            if ( guess->colours[j] == scrt->colours[i] )
             {
                 clrsWrongPos++;
                 break;
