@@ -27,6 +27,8 @@ int coloursWrongPos(struct Row * guess)
     {
         for (size_t j = 0; j < 3; j++)
         {
+            
+
             if ( i == j ) continue;
 
             printf("\nguess (%d): %d, secret (%d): %d", j, guess->colours[j], i, scrt->colours[i]);

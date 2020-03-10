@@ -67,7 +67,7 @@ int main(int argc, char ** argv)
 
         // add guess to mastermind guesses array
         
-        attempts = i;
+        attempts = i + 1;
 
         if ( (coloursRightPos(&mastermind->guesses[i]) == 3) && (coloursWrongPos(&mastermind->guesses[i]) == 0) )
         {
