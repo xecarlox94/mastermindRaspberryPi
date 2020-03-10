@@ -27,12 +27,15 @@ int main(int argc, char ** argv)
     mastermind->secret = (struct Row *) malloc(sizeof(struct Row));
 
 
-    int temp[3];
+    // int temp[3];
 
-    for (size_t i = 0; i < 3; i++)
-    {
-        temp[i] = rand() % 3;
-    }
+    // for (size_t i = 0; i < 3; i++)
+    // {
+    //     temp[i] = rand() % 3;
+    // }
+    
+
+    int temp[3] = { 2, 1, 3 };
     
     struct Row * scrt = mastermind->secret;
 
@@ -60,7 +63,7 @@ int main(int argc, char ** argv)
         printf("\ncurrent guess: %d %d %d", mastermind->guesses[i].colours[0], mastermind->guesses[i].colours[1], mastermind->guesses[i].colours[2]);
         
         // calculate amount of colours in right position
-        printf("\nValues in correct position: %d", coloursRightPos(&mastermind->guesses[i]));
+        printf("\nValues in correct position: %d\n", coloursRightPos(&mastermind->guesses[i]));
 
         // calculate amount of colours in wrong position
         printf("\nValues in wrong position: %d\n", coloursWrongPos(&mastermind->guesses[i]));

@@ -1,6 +1,7 @@
 #include "mastermind.h"
 #include <stddef.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 
 
@@ -25,19 +26,35 @@ int coloursWrongPos(struct Row * guess)
 
     for (size_t i = 0; i < 3; i++)
     {
+        bool isRepeat = false;
+
+        for (size_t k = i - 1; 0 >= k; k--)
+        {
+            if ( guess->colours[i] == guess->colours[k] ) isRepeat = true;
+        }
+
+        if ( isRepeat ) continue;
+
         for (size_t j = 0; j < 3; j++)
         {
+            isRepeat = false;
             
 
-            if ( i == j ) continue;
-
-            printf("\nguess (%d): %d, secret (%d): %d", j, guess->colours[j], i, scrt->colours[i]);
-            if ( guess->colours[j] == scrt->colours[i] )
+            for (size_t k = j - 1; 0 >= k; k--)
             {
-                printf("\nwrong position");
+                if ( scrt->colours[j] == scrt->colours[k] ) isRepeat = true;
+            }
+
+            if ( ( i == j) || isRepeat ) continue;
+
+            printf("s %d: %d    g %d: %d\n", j, scrt->colours[j], i, guess->colours[i]);
+
+            if ( scrt->colours[j] == guess->colours[i])
+            {
                 clrsWrongPos++;
                 break;
             }
+            
         }
     }
     
