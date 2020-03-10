@@ -50,7 +50,7 @@ int main(int argc, char ** argv)
         // ask user for the each colour row values
         // assign coulour to guess pointer
 
-        printf("\n\nGuess%d: ", (i + 1));
+        printf("\n\nGuess%lu: ", i + 1);
         scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
         // printf("You entered %d, %d, and %d.\n", x[0], x[1], x[2]);
         
