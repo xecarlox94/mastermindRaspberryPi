@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "mastermind.h"
+#include <stdbool.h>
 
 
 /*
@@ -38,9 +39,9 @@ int main(int argc, char ** argv)
     writeRow(scrt, temp);
 
     printf("secret: %d %d %d\n", scrt->colours[0], scrt->colours[1], scrt->colours[2]);
-
-
-    // create row (guess) pointer
+    
+    bool win = false;
+    int attempts =0;
 
     for (size_t i = 0; i < 1; i++)
     {
@@ -65,14 +66,30 @@ int main(int argc, char ** argv)
         printf("\nValues in wrong position: %d\n", coloursWrongPos(&mastermind->guesses[i]));
 
         // add guess to mastermind guesses array
+        
+        attempts = i;
 
+        if ( (coloursRightPos(&mastermind->guesses[i]) == 3) && (coloursWrongPos(&mastermind->guesses[i]) == 0) )
+        {
+            win = true;
+        }
 
         // if guess is correct, finish the game
         // guess is correct if colours right position amount is 3
         // and wrong position amount is 0
     }
-    
 
+
+
+    if ( win )
+    {
+        printf("YOU WON\nGame finished in %d moves\n", attempts);
+    } 
+    else
+    {
+        printf("YOU LOST\nGame finished in %d moves\n", attempts);
+    }
+    
 
 
     // create function to print row, perhaps
