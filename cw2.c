@@ -7,11 +7,11 @@
 
 /*
 
-gcc -c -o mastermind.o mastermind.c -std=c99
+gcc -c -o mastermind.o mastermind.c
 
-gcc -c -o cw2.o cw2.c -std=c99
+gcc -c -o cw2.o cw2.c
 
-gcc -o cw2 cw2.o mastermind.o -std=c99
+gcc -o cw2 cw2.o mastermind.o
 
 */
 
@@ -25,17 +25,25 @@ int main(int argc, char ** argv)
 
     mastermind->guesses = (struct Row *) malloc(sizeof(struct Row) * 3);
     mastermind->secret = (struct Row *) malloc(sizeof(struct Row));
-
-
-    // int temp[3];
-
-    // for (size_t i = 0; i < 3; i++)
-    // {
-    //     temp[i] = rand() % 3;
-    // }
     
-
-    int temp[3] = { 2, 1, 3 };
+    int temp[3], i = 0;
+    
+    while (i < 3)
+    {
+		int j = i, rnd = (rand() % 3) + 1;
+		
+		while ( j >= 0 )
+		{
+			if ( rnd == temp[j] )
+			{
+				j = i;
+				rnd = (rand() % 3) + 1;;
+			}
+			j--;
+		}
+        temp[i] = rnd;
+        i++;
+    }
     
     struct Row * scrt = mastermind->secret;
 
@@ -44,37 +52,43 @@ int main(int argc, char ** argv)
     printf("secret: %d %d %d\n", scrt->colours[0], scrt->colours[1], scrt->colours[2]);
     
     bool win = false;
-    int attempts =0;
+    i = 0;
 
-    for (size_t i = 0; i < 1; i++)
+    while ( i < 3 )
     {
         
-        int colours[3];
-
-        // ask user for the each colour row values
-        // assign coulour to guess pointer
-
-        printf("\n\nGuess%lu: ", i + 1);
-        scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
-        // printf("You entered %d, %d, and %d.\n", x[0], x[1], x[2]);
+        int colours[3], clrsRighPos, clrsWrongPos;
         
+        
+        printf("\n\nGuess %lu: ", i + 1);
+        scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
+        
+		
         writeRow(&mastermind->guesses[i], colours);
 
-        printf("\ncurrent guess: %d %d %d", mastermind->guesses[i].colours[0], mastermind->guesses[i].colours[1], mastermind->guesses[i].colours[2]);
+        //printf("\ncurrent guess: %d %d %d", mastermind->guesses[i].colours[0], mastermind->guesses[i].colours[1], mastermind->guesses[i].colours[2]);
+                
+        
+        clrsRighPos = coloursRightPos(&mastermind->guesses[i]);
+        
+        
+        clrsWrongPos = coloursWrongPos(&mastermind->guesses[i]);
+        
         
         // calculate amount of colours in right position
-        printf("\nValues in correct position: %d\n", coloursRightPos(&mastermind->guesses[i]));
+        printf("\nValues in correct position: %d\n", clrsRighPos);
 
         // calculate amount of colours in wrong position
-        printf("\nValues in wrong position: %d\n", coloursWrongPos(&mastermind->guesses[i]));
+        printf("\nValues in wrong position: %d\n", clrsWrongPos);
 
         // add guess to mastermind guesses array
         
-        attempts = i + 1;
+        i++;
 
-        if ( (coloursRightPos(&mastermind->guesses[i]) == 3) && (coloursWrongPos(&mastermind->guesses[i]) == 0) )
+        if ( clrsRighPos == 3 && clrsWrongPos == 0 )
         {
             win = true;
+            break;
         }
 
         // if guess is correct, finish the game
@@ -86,18 +100,18 @@ int main(int argc, char ** argv)
 
     if ( win )
     {
-        printf("YOU WON\nGame finished in %d moves\n", attempts);
+        printf("YOU WON\nGame finished in %d moves\n", i);
     } 
     else
     {
-        printf("YOU LOST\nGame finished in %d moves\n", attempts);
+        printf("YOU LOST\nGame finished in %d moves\n", i);
     }
     
 
 
     // create function to print row, perhaps
     
-
+    
 
 
 
