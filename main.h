@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "mastermind.h"
 #include <stdbool.h>
+
+#include "mastermind.h"
 
 
 

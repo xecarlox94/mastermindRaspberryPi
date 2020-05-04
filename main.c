@@ -4,36 +4,16 @@
 
 int main(int argc, char ** argv)
 {
-    srand(time(0));
-
-    mastermind = (struct Mastermind *) malloc(sizeof(struct Mastermind));
-
-    mastermind->guesses = (struct Row *) malloc(sizeof(struct Row) * 3);
-    mastermind->secret = (struct Row *) malloc(sizeof(struct Row));
-    
-    int temp[3], i = 0;
-    
-    while (i < 3)
-    {
-		int j = i, rnd = (rand() % 3) + 1;
-		
-		while ( j >= 0 )
-		{
-			if ( rnd == temp[j] )
-			{
-				j = i;
-				rnd = (rand() % 3) + 1;;
-			}
-			j--;
-		}
-        temp[i] = rnd;
-        i++;
-    }
-    
+	
+	int fd, gpio;
+	
+	fd = openf();
+	
+	gpio = mapm(fd);
+	
+	
+	startGame();
     struct Row * scrt = mastermind->secret;
-
-    writeRow(scrt, temp);
-
     printf("secret: %d %d %d\n", scrt->colours[0], scrt->colours[1], scrt->colours[2]);
     
     bool win = false;
@@ -97,7 +77,10 @@ int main(int argc, char ** argv)
     // create function to print row, perhaps
     
     
-
+    
+    
+	
+	closef(fd);
 
 
     return 0;

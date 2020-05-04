@@ -1,7 +1,4 @@
 #include "mastermind.h"
-#include <stddef.h>
-#include <stdio.h>
-#include <stdbool.h>
 
 
 
@@ -67,4 +64,38 @@ void writeRow(struct Row * row, int colours[3])
     row->colours[0] = colours[0];
     row->colours[1] = colours[1];
     row->colours[2] = colours[2];
+};
+
+
+void startGame()
+{
+
+    mastermind = (struct Mastermind *) malloc(sizeof(struct Mastermind));
+
+    mastermind->guesses = (struct Row *) malloc(sizeof(struct Row) * 3);
+    mastermind->secret = (struct Row *) malloc(sizeof(struct Row));
+    
+    int temp[3], i = 0;
+    srand(time(0));
+    
+    while (i < 3)
+    {
+		int j = i, rnd = (rand() % 3) + 1;
+		
+		while ( j >= 0 )
+		{
+			if ( rnd == temp[j] )
+			{
+				j = i;
+				rnd = (rand() % 3) + 1;;
+			}
+			j--;
+		}
+        temp[i] = rnd;
+        i++;
+    }
+    
+    struct Row * scrt = mastermind->secret;
+
+    writeRow(scrt, temp);
 };
