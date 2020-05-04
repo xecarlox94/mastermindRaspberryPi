@@ -49,8 +49,6 @@ int coloursWrongPos(struct Row * guess)
 
             if ( i == j ) continue;
 
-            printf("s %ld: %d    g %ld: %d\n", j, scrt->colours[j], i, guess->colours[i]);
-
             if ( scrt->colours[j] == guess->colours[i])
             {
                 clrsWrongPos++;
