@@ -13,8 +13,9 @@ int main(int argc, char ** argv)
 	
 	
 	startGame();
-    struct Row * scrt = mastermind->secret;
-    printf("secret: %d %d %d\n", scrt->colours[0], scrt->colours[1], scrt->colours[2]);
+    printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
+    
+    
     
     bool win = false;
     i = 0;
