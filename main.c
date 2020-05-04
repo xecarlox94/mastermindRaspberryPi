@@ -1,19 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "mastermind.h"
-#include <stdbool.h>
-
-
-/*
-
-gcc -c -o mastermind.o mastermind.c
-
-gcc -c -o cw2.o cw2.c
-
-gcc -o cw2 cw2.o mastermind.o
-
-*/
+#include "main.h"
 
 
 
