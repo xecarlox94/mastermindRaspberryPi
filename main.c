@@ -5,12 +5,13 @@
 int main(int argc, char ** argv)
 {
 	
-	int fd, gpio;
+	int fd, gpio, timer;
 	
 	fd = openf();
 	
-	gpio = mapm(fd);
+	gpio = mgpio(fd);
 	
+	timer = mtimer(fd);
 	
 	startGame();
     printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
@@ -18,7 +19,7 @@ int main(int argc, char ** argv)
     
     
     bool win = false;
-    i = 0;
+    int i = 0;
 
     while ( i < 3 )
     {
@@ -28,6 +29,12 @@ int main(int argc, char ** argv)
         
         printf("\n\nGuess %lu: ", i + 1);
         scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
+        
+        
+        
+        //	TIMER WAIT LOGIC
+        
+        
         
 		
         writeRow(&mastermind->guesses[i], colours);

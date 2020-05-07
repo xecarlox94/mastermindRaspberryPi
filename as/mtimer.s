@@ -1,7 +1,7 @@
-.global mapm
+.global mtimer
 
 
-mapm:
+mtimer:
 
 	SUB SP, SP, #12
 
@@ -9,7 +9,7 @@ mapm:
 
 	STR	R0, [SP, #0]		@ Store file handle on top stack
 
-	LDR	R0, .gpiobase		@ get GPIO_Base address
+	LDR	R0, .timerbase		@ get TIMER_Base address
 	STR	R0, [SP, #4]		@ store on SP+4
 
 	MOV	R0, #0			@ R0=0
@@ -25,5 +25,5 @@ mapm:
 
 	BX LR
 
-.gpiobase:	.word	0x3F200000	@ GPIO_Base for Pi 2
+.timerbase:	.word	0x3F003000	@ TIMER_Base for Pi 2
 

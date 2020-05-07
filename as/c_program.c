@@ -4,7 +4,8 @@
 
 
 /*
- * gcc -c -o mapm.o mapm.s
+ * gcc -c -o mgpio.o mgpio.s
+ * gcc -c -o mtimer.o mtimer.s
  * gcc -c -o openf.o openf.s
  * gcc -c -o closef.o closef.s
  * 
@@ -15,7 +16,7 @@
  * 
  * gcc -c -o c_program.o c_program.c
  * 
- * gcc -o program c_program.o aux/fset.o aux/fsel.o aux/flev.o aux/fclr.o closef.o openf.o mapm.o
+ * gcc -o program c_program.o aux/fset.o aux/fsel.o aux/flev.o aux/fclr.o closef.o openf.o mgpio.o
  * 
 */
 
@@ -24,7 +25,7 @@ extern int openf(void);
 
 extern void closef(int fd);
 
-extern int mapm(int fd);
+extern int mgpio(int fd);
 
 extern void fsel(int gpio, int pin, int mode);
 
@@ -70,7 +71,7 @@ int main(void)
 	//printf("file handler: %d\n", fd);
 	
 	
-	gpio = mapm(fd);
+	gpio = mgpio(fd);
 	
 	
 	//printf("gpio address: %d\n", (int) gpio);
