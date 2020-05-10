@@ -17,15 +17,15 @@ int main(int argc, char ** argv)
 	startGame();
     printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
     
-    
-    printf("size of int: %d, \t size of int32_t: %d", sizeof(int), sizeof(uint32_t) );
-    
     bool win = false;
     int i = 0;
     
     fsel(gpio, 19, 0);
 	fsel(gpio, 13, 1);
 	fsel(gpio, 5, 1);
+	
+	fclr(gpio,13);
+	fclr(gpio,5);
 
     while ( i < 3 )
     {
@@ -41,27 +41,36 @@ int main(int argc, char ** argv)
 			int timeout = TIMEOUT * 5, cur, t;
 			
 			short guess = 0;
+			
+			printf("loop started\n");
 			while ( (cur = *timer) - ts < timeout)
 			{
 				int val = flev(gpio,19);
+				if ( val ) 
+				{
+					guess++;
+					guess %= 3;
+					if ( guess == 0 ) guess = 3;
+					
+					printf("Current guess: %d \n", guess);
+					
+					t = *timer;
+					while ( (cur = *timer) - t < (timeout / 10)) {}
+				}
 				
-				if ( val ) guess++;
-				
-				t = *timer;
-				while ( (cur = *timer) - t < (timeout / 10)) {}
 			}
-			guess %= 3;
-			guess ++;
 			
-			// assign color to guess
+			printf("Final guess %d \n ", guess);
 			colours[j] = guess;
-			
 			
 			// red blink
 			// greeen blinks the ammount of times
 			bool greenOn = false;
 			
 			fset(gpio,5,1);
+			printf("turning colour on!\n");
+			
+			while(true);
 			
 			ts  = *timer;
 			while ( (cur = *timer) - ts < timeout)
