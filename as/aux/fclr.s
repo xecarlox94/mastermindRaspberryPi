@@ -17,10 +17,6 @@ clrbit:
 	
 	LSL R2, R1		@ shift the value by pin number
 	
-	LDR R3, [R0]	@ load register
-	
-	BIC R3, R2		@ clear bit in the pin position
-	
-	STR R3, [R0]	@ store new register value
+	STR R2, [R0]	@ store new register value
 
 	BX LR

@@ -15,10 +15,6 @@ setbit:
 
 	LSL R2, R1		@ shift the value by pin number
 	
-	LDR R3, [R0]	@ load register
-	
-	ORR R3, R2		@ OR logical operation with register and shifted value
-	
-	STR R3, [R0]	@ store new register value
+	STR R2, [R0]	@ store new register value
 
 	BX LR
