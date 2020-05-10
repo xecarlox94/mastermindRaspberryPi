@@ -5,19 +5,19 @@
 int main(int argc, char ** argv)
 {
 	
-	int fd, gpio;
+	int fd, gpio, timer;
 	
 	fd = openf();
 	
 	gpio = mgpio(fd);
 	
-	uint32_t timer = mtimer(fd);
+	timer = mtimer(fd);
 	
 	startGame();
     printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
     
     
-    printf("size of int %d, \t size of int32_t", sizeof(int), sizeof(uint32_t) );
+    printf("size of int: %d, \t size of int32_t: %d", sizeof(int), sizeof(uint32_t) );
     
     bool win = false;
     int i = 0;
@@ -33,11 +33,11 @@ int main(int argc, char ** argv)
         
         printf("\n\nGuess %lu: ", i + 1);
         
-        /*
+        
         while ( j < 3 )
         {
-			volatile uint32_t ts  = *(timer + 1);
-			uint32_t timeout = TIMEOUT * 5, cur, t;
+			int ts  = *(timer + 1);
+			int timeout = TIMEOUT * 5, cur, t;
 			
 			short guess = 0;
 			while ( (cur = *(timer+1)) - ts < timeout)
