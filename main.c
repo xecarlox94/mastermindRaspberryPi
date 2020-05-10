@@ -5,18 +5,19 @@
 int main(int argc, char ** argv)
 {
 	
-	int fd, gpio, timer;
+	int fd, gpio;
 	
 	fd = openf();
 	
 	gpio = mgpio(fd);
 	
-	timer = mtimer(fd);
+	uint32_t timer = mtimer(fd);
 	
 	startGame();
     printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
     
     
+    printf("size of int %d, \t size of int32_t", sizeof(int), sizeof(uint32_t) )
     
     bool win = false;
     int i = 0;
@@ -32,44 +33,62 @@ int main(int argc, char ** argv)
         
         printf("\n\nGuess %lu: ", i + 1);
         
-        
-        while ( j < 3)
+        /*
+        while ( j < 3 )
         {
 			volatile uint32_t ts  = *(timer + 1);
-			uint32_t timeout = TIMEOUT * 5, cur, greenLightTimeout;
+			uint32_t timeout = TIMEOUT * 5, cur, t;
 			
 			short guess = 0;
 			while ( (cur = *(timer+1)) - ts < timeout)
 			{
-				// read input from button
+				int val = flev(gpio,19);
 				
+				if ( val ) guess++;
+				
+				t = *(timer + 1);
+				while ( (cur = *(timer+1)) - t < (timeout / 10)) {}
 			}
+			guess %= 3;
+			guess ++;
 			
 			// assign color to guess
-			color[j] = guess;
+			colours[j] = guess;
 			
 			
 			// red blink
 			// greeen blinks the ammount of times
-			bool greenOn = true;
-			greenLightTimeout = timeout / 6;
-			ts  = *(timer + 1);
+			bool greenOn = false;
 			
+			fset(gpio,5,1);
+			
+			ts  = *(timer + 1);
 			while ( (cur = *(timer + 1)) - ts < timeout)
 			{
 				
+				
+				t = *(timer + 1);
+				while ( (cur = *(timer+1)) - t < (timeout / 6)) {}
+				
+				if ( guess > 0 )
+				{
+					if ( !greenOn )
+					{
+						fset(gpio,13,1);
+					}
+					else 
+					{
+						fclr(gpio,13);
+						guess--;
+					}
+				}
 			}
 			
+			fclr(gpio,13);
+			fclr(gpio,5);
 			j++;
 		}
-        
-          {
-			volatile uint32_t ts = *(timer+1); // word offset
-			uint32_t curr;
-
-			while( ( (curr=*(timer+1)) - ts ) < TIMEOUT )  {  /* nothing, i.e. busy wait */ }
-		  }
-        
+	 */
 		
         writeRow(&mastermind->guesses[i], colours);
 
