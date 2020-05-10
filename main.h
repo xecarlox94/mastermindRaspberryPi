@@ -39,7 +39,7 @@ extern void closef(int fd);
 
 extern int mgpio(int fd);
 
-extern int mtimer(int fd);
+extern int * mtimer(int fd);
 
 extern void fsel(int gpio, int pin, int mode);
 

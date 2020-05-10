@@ -5,7 +5,8 @@
 int main(int argc, char ** argv)
 {
 	
-	int fd, gpio, timer;
+	int fd, gpio;
+	int * timer;
 	
 	fd = openf();
 	
@@ -88,7 +89,6 @@ int main(int argc, char ** argv)
 			fclr(gpio,5);
 			j++;
 		}
-	 */
 		
         writeRow(&mastermind->guesses[i], colours);
 
