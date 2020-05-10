@@ -20,21 +20,55 @@ int main(int argc, char ** argv)
     
     bool win = false;
     int i = 0;
+    
+    fsel(gpio, 19, 0);
+	fsel(gpio, 13, 1);
+	fsel(gpio, 5, 1);
 
     while ( i < 3 )
     {
         
-        int colours[3], clrsRighPos, clrsWrongPos;
-        
+        int colours[3], clrsRighPos, clrsWrongPos,j = 0;
         
         printf("\n\nGuess %lu: ", i + 1);
-        scanf("%d %d %d", &colours[0], &colours[1], &colours[2]);
         
         
+        while ( j < 3)
+        {
+			volatile uint32_t ts  = *(timer + 1);
+			uint32_t timeout = TIMEOUT * 5, cur, greenLightTimeout;
+			
+			short guess = 0;
+			while ( (cur = *(timer+1)) - ts < timeout)
+			{
+				// read input from button
+				
+			}
+			
+			// assign color to guess
+			color[j] = guess;
+			
+			
+			// red blink
+			// greeen blinks the ammount of times
+			bool greenOn = true;
+			greenLightTimeout = timeout / 6;
+			ts  = *(timer + 1);
+			
+			while ( (cur = *(timer + 1)) - ts < timeout)
+			{
+				
+			}
+			
+			j++;
+		}
         
-        //	TIMER WAIT LOGIC
-        
-        
+          {
+			volatile uint32_t ts = *(timer+1); // word offset
+			uint32_t curr;
+
+			while( ( (curr=*(timer+1)) - ts ) < TIMEOUT )  {  /* nothing, i.e. busy wait */ }
+		  }
         
 		
         writeRow(&mastermind->guesses[i], colours);
@@ -68,7 +102,10 @@ int main(int argc, char ** argv)
         // guess is correct if colours right position amount is 3
         // and wrong position amount is 0
     }
-
+    
+    
+	fclr(gpio,13);
+	fclr(gpio,5);
 
 
     if ( win )

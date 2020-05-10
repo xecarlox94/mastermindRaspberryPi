@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdint.h>
 #include <stdbool.h>
 
 #include "mastermind.h"
 
 
-#define TIMEOUT 7000000
+#define TIMEOUT 1000000
 
 
 /*
