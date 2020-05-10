@@ -17,7 +17,7 @@ int main(int argc, char ** argv)
     printf("secret: %d %d %d\n", mastermind->secret->colours[0], mastermind->secret->colours[1], mastermind->secret->colours[2]);
     
     
-    printf("size of int %d, \t size of int32_t", sizeof(int), sizeof(uint32_t) )
+    printf("size of int %d, \t size of int32_t", sizeof(int), sizeof(uint32_t) );
     
     bool win = false;
     int i = 0;
