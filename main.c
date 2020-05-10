@@ -37,18 +37,18 @@ int main(int argc, char ** argv)
         
         while ( j < 3 )
         {
-			int ts  = *(timer + 1);
+			int ts  = *timer;
 			int timeout = TIMEOUT * 5, cur, t;
 			
 			short guess = 0;
-			while ( (cur = *(timer+1)) - ts < timeout)
+			while ( (cur = *timer) - ts < timeout)
 			{
 				int val = flev(gpio,19);
 				
 				if ( val ) guess++;
 				
-				t = *(timer + 1);
-				while ( (cur = *(timer+1)) - t < (timeout / 10)) {}
+				t = *timer;
+				while ( (cur = *timer) - t < (timeout / 10)) {}
 			}
 			guess %= 3;
 			guess ++;
@@ -63,13 +63,13 @@ int main(int argc, char ** argv)
 			
 			fset(gpio,5,1);
 			
-			ts  = *(timer + 1);
-			while ( (cur = *(timer + 1)) - ts < timeout)
+			ts  = *timer;
+			while ( (cur = *timer) - ts < timeout)
 			{
 				
 				
-				t = *(timer + 1);
-				while ( (cur = *(timer+1)) - t < (timeout / 6)) {}
+				t = *timer;
+				while ( (cur = *timer) - t < (timeout / 6)) {}
 				
 				if ( guess > 0 )
 				{
