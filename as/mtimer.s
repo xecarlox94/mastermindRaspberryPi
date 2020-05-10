@@ -22,6 +22,8 @@ mtimer:
 	LDR LR, [SP, #8]
 
 	ADD SP, SP, #12
+	
+	ADD R0, #4
 
 	BX LR
 
